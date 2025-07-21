@@ -5,37 +5,24 @@ const heartLoader = document.querySelector(".cssload-main");
 const yesBtn = document.querySelector(".js-yes-btn");
 const noBtn = document.querySelector(".js-no-btn");
 
-// Hàm di chuyển nút No
-function moveNoButton() {
-  const maxX = questionContainer.offsetWidth - noBtn.offsetWidth;
-  const maxY = questionContainer.offsetHeight - noBtn.offsetHeight;
+// /change the postion of no button
+noBtn.addEventListener("mouseover", () => {
+  const newX = Math.floor(Math.random() * questionContainer.offsetWidth);
+  const newY = Math.floor(Math.random() * questionContainer.offsetWidth);
 
-  const newX = Math.floor(Math.random() * maxX);
-  const newY = Math.floor(Math.random() * maxY);
-
-  requestAnimationFrame(() => {
-    noBtn.style.left = `${newX}px`;
-    noBtn.style.top = `${newY}px`;
-  });
-}
-
-// Sự kiện cho máy tính
-noBtn.addEventListener("mouseenter", moveNoButton);
-
-// Sự kiện cho điện thoại
-noBtn.addEventListener("touchstart", (e) => {
-  e.preventDefault(); // Ngăn hiện tượng khựng do chạm
-  moveNoButton();
+  noBtn.style.left = `${newX}px`;
+  noBtn.style.top = `${newY}px`;
 });
 
-// Nút Yes được bấm
+// yes button functionality
+
 yesBtn.addEventListener("click", () => {
   questionContainer.style.display = "none";
   heartLoader.style.display = "inherit";
 
-  setTimeout(() => {
+  const timeoutId = setTimeout(() => {
     heartLoader.style.display = "none";
     resultContainer.style.display = "inherit";
-    gifResult.play?.(); // optional chaining để tránh lỗi nếu gifResult không có play
+    gifResult.play();
   }, 3000);
 });
