@@ -7,6 +7,8 @@ const noBtn = document.querySelector(".js-no-btn");
 
 // /change the postion of no button
 function moveNoButton() {
+  noBtn.blur(); // XÓA focus ngay khi vừa chạm vào
+
   const maxX = questionContainer.offsetWidth - noBtn.offsetWidth;
   const maxY = questionContainer.offsetHeight - noBtn.offsetHeight;
   const newX = Math.floor(Math.random() * maxX);
@@ -16,6 +18,7 @@ function moveNoButton() {
   noBtn.style.left = `${newX}px`;
   noBtn.style.top = `${newY}px`;
 }
+
 
 // Gọi cả click & touchstart để hoạt động trên mọi thiết bị
 noBtn.addEventListener("click", moveNoButton);
