@@ -6,14 +6,20 @@ const yesBtn = document.querySelector(".js-yes-btn");
 const noBtn = document.querySelector(".js-no-btn");
 
 // /change the postion of no button
-noBtn.addEventListener("mouseover", () => {
-  const newX = Math.floor(Math.random() * questionContainer.offsetWidth);
-  const newY = Math.floor(Math.random() * questionContainer.offsetWidth);
+function moveNoButton() {
+  const maxX = questionContainer.offsetWidth - noBtn.offsetWidth;
+  const maxY = questionContainer.offsetHeight - noBtn.offsetHeight;
+  const newX = Math.floor(Math.random() * maxX);
+  const newY = Math.floor(Math.random() * maxY);
 
+  noBtn.style.position = "absolute";
   noBtn.style.left = `${newX}px`;
   noBtn.style.top = `${newY}px`;
-});
+}
 
+// Gọi cả click & touchstart để hoạt động trên mọi thiết bị
+noBtn.addEventListener("click", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton);
 // yes button functionality
 
 yesBtn.addEventListener("click", () => {
